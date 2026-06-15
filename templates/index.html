@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Rent Predictor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+    <body>
+        <div class="container">
+
+        <div class="header">
+            <div class="logo">🏠 House Rent Predictor</div>
+            <div class="tagline">
+                Smart rent prediction using Machine Learning
+            </div>
+        </div>
+
+        <div class="main-content">
+
+            <!-- LEFT SIDE -->
+            <div>
+
+                <form action="/predict" method="POST">
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+                            <label>Area (sq.ft)</label>
+                            <input type="number" name="area" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Bedrooms</label>
+                            <input type="number" name="bedrooms" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Bathrooms</label>
+                            <input type="number" name="bathrooms" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Floor</label>
+                            <input type="number" name="floor" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Property Age (Years)</label>
+                            <input type="number" name="ageofproperty" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Furnishing</label>
+                            <select name="furnishing" required>
+                                <option value="">Select</option>
+                                <option value="Furnished">Furnished</option>
+                                <option value="Semi-Furnished">Semi-Furnished</option>
+                                <option value="Unfurnished">Unfurnished</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Parking</label>
+                            <select name="parking" required>
+                                <option value="">Select</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>City</label>
+                            <select name="city" required>
+                                <option value="">Select City</option>
+                                <option value="Ahmedabad">Ahmedabad</option>
+                                <option value="Bangalore">Bangalore</option>
+                                <option value="Chennai">Chennai</option>
+                                <option value="Delhi">Delhi</option>
+                                <option value="Hyderabad">Hyderabad</option>
+                                <option value="Pune">Pune</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <button type="submit" class="predict-btn">
+                        Predict Rent
+                    </button>
+
+                </form>
+
+            </div>
+
+            <!-- RIGHT SIDE -->
+            <div>
+
+                <div class="result-card">
+
+                    <img src="https://cdn-icons-png.flaticon.com/512/69/69524.png">
+
+                    <div class="result-title">
+                        Estimated Monthly Rent
+                    </div>
+
+                    {% if result %}
+                    <div class="price">
+                        {{ result.Prediction }}
+                    </div>
+                    {% else %}
+                    <div class="price">
+                        ₹0
+                    </div>
+                    {% endif %}
+
+                    <div class="note">
+                        AI-generated estimate based on property details.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="footer-box">
+
+            <div class="footer-card">
+                🔒 Secure Prediction
+            </div>
+
+            <div class="footer-card">
+                📊 Trained on Real Housing Data
+            </div>
+
+            <div class="footer-card">
+                🤖 XGBoost Machine Learning Model
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

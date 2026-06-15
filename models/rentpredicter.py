@@ -118,7 +118,7 @@ class rentprediction():
         self.y_pred = self.model.predict(self.X_test)
         
     def load_model(self):
-        self.model = joblib.load("saved_models/rent_model.pkl")
+        self.model = joblib.load("saved_models/rent_model.pkl")     
         
     def evaluate(self):
         

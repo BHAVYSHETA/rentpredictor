@@ -118,8 +118,13 @@ class rentprediction():
         self.y_pred = self.model.predict(self.X_test)
         
     def load_model(self):
-        self.model = joblib.load("saved_models/rent_model.pkl")     
-        
+
+        saved_data = joblib.load(
+            "saved_models/rent_model.pkl"
+        )
+
+        self.model = saved_data["model"]
+        self.scaler = saved_data["scaler"]    
     def evaluate(self):
         
         mae = mean_absolute_error(self.y_test, self.y_pred)

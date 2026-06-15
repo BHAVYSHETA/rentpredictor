@@ -10,6 +10,7 @@ rent_app.load_data()
 rent_app.preprocess_data()
 rent_app.split_data()
 rent_app.load_model()
+rent_app.X_test = rent_app.scaler.transform(rent_app.X_test)
 rent_app.y_pred = rent_app.model.predict(rent_app.X_test)
 rent_app.evaluate()
 

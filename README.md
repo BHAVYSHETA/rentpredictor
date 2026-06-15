@@ -99,6 +99,24 @@ Make predictions:
 ```bash
 python predict.py
 ```
+## Application Preview
+
+### Home Page
+![Home](screenshots/homepage.png)
+
+### Prediction Result
+![Prediction](screenshots/prediction_result.png)
+
+## Data Analysis
+
+### Rent Distribution
+![Rent Distribution](screenshots/rent_distribution.png)
+
+### City-wise Rent Analysis
+![City Analysis](screenshots/city_vs_rent.png)
+
+### Feature Importance
+![Feature Importance](screenshots/feature_importance.png)
 
 ## 📈 Model Evaluation
 
@@ -112,7 +130,6 @@ Evaluation Metrics Used:
 ## 💡 Future Improvements
 
 * Deploy using Flask
-* Deploy using Streamlit
 * Add more city-specific features
 * Improve prediction accuracy
 * Integrate real-time housing data

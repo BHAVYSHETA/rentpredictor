@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
-from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.model_selection import train_test_split, cross_val_score, GridSearchCV
 # from sklearn.linear_model import LinearRegression
 # from sklearn.tree import DecisionTreeRegressor
 # from sklearn.ensemble import RandomForestRegressor
@@ -108,8 +108,28 @@ class rentprediction():
         # self.model = LinearRegression()
         # self.model = DecisionTreeRegressor()
         # self.model = RandomForestRegressor()
-        self.model = XGBRegressor()
-        self.model.fit(self.X_train, self.y_train)
+        params = {
+            'n_estimators': [100, 200, 300],
+            'max_depth': [3, 5, 7, 10],
+            'learning_rate': [0.01, 0.05, 0.1, 0.2],
+            'subsample': [0.8, 1.0],
+            'colsample_bytree': [0.8, 1.0],
+            'min_child_weight': [1, 3, 5],
+            'gamma': [0, 0.1, 0.2]
+        }
+        
+        self.grid = GridSearchCV(
+            XGBRegressor(random_state=42),
+            param_grid=params,
+            cv=5,
+            scoring='r2',
+            n_jobs=-1,
+            verbose=2
+        )
+        
+        self.grid.fit(self.X_train, self.y_train) 
+        
+        self.model = self.grid.best_estimator_
         joblib.dump({
             "model": self.model,
             "scaler": self.scaler

@@ -7,6 +7,6 @@ rent_app.preprocess_data()
 rent_app.split_data()
 rent_app.scale_data()
 
-rent_app.train_model()
+rent_app.load_model()
 
 print("Model Trained Successfully!")
